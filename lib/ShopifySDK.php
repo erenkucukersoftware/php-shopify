@@ -9,6 +9,7 @@
 
 namespace PHPShopify;
 
+use Illuminate\Support\Facades\Config;
 
 /*
 |--------------------------------------------------------------------------
@@ -325,8 +326,13 @@ class ShopifySDK
      *
      * @return ShopifySDK
      */
-    public static function config($config)
+    public static function config($config = [])
     {
+        $config = [
+            'ShopUrl' => Config::get('api.shopify_domain'),
+            'ApiKey' => Config::get('api.shopify_token'),
+            'Password' => Config::get('api.shopify_pass')
+        ];
         /**
          * Reset config to it's initial values
          */
